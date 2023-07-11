@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  opensearch:
+    image: opensearchproject/opensearch:latest
+    container_name: opensearch
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+    environment:
+      - discovery.type=single-node
+  dynamodb-local:
+    command: "-jar DynamoDBLocal.jar --inMemory -sharedDb"
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb
+    ports:
+      - '8000:8000'
