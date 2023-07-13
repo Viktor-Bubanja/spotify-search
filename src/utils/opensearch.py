@@ -1,6 +1,5 @@
 import os
 from functools import cache
-from typing import Any
 from src.utils.environment_variables import dev_env, get_username_password
 
 from opensearchpy import OpenSearch
@@ -26,18 +25,18 @@ def _opensearch_client():
         verify_certs=verify_certs,
     )
 
+class OpenSearch:
+    def __init__(self, client=_opensearch_client()):
+        self.client = client
 
-def search(index, query):
-    return _opensearch_client().search(index=index, body=query)
+    def search(self, index: str, query: dict) -> dict:
+        return self.client.search(index=index, body=query)
 
+    def index(self, index: str, body: dict) -> dict:
+        return self.client.index(index=index, body=body)
 
-def index(index, body):
-    return _opensearch_client().index(index=index, body=body)
+    def create_index(self, index: str, body: dict) -> dict:
+        return self.client.indices.create(index=index, body=body)
 
-
-def create_index(index: str, body: Any) -> dict:
-    return _opensearch_client().indices.create(index=index, body=body)
-
-
-def delete_index(index: str) -> dict:
-    return _opensearch_client().indices.delete(index)
+    def delete_index(self, index: str) -> dict:
+        return self.client.indices.delete(index)

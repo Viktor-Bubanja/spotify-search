@@ -1,19 +1,55 @@
+import boto3
 import json
 import os
 import pytest
-from src.utils.opensearch import create_index, delete_index, TRACKS_INDEX
 import dotenv
 
-
-dotenv.load_dotenv('.env.test')
+dotenv.load_dotenv(".env.test")
 DIR_PATH = os.path.dirname(__file__)
 
+from src.utils.opensearch import OpenSearch, TRACKS_INDEX
+from src.utils.dynamodb import DynamoDB
 
 @pytest.fixture(scope="session", autouse=True)
-def setup_index():
+def setup_tracks_index():
     index_mapping = os.path.join(DIR_PATH, f"../index-management/definitions/dev/{TRACKS_INDEX}.json")
     f = open(index_mapping)
     data = json.load(f)
-    create_index(index=TRACKS_INDEX, body=data)
+    opensearch = OpenSearch()
+    opensearch.create_index(index=TRACKS_INDEX, body=data)
     yield
-    delete_index(TRACKS_INDEX)
+    opensearch.delete_index(TRACKS_INDEX)
+
+
+@pytest.fixture(scope="session", autouse=True)
+def setup_dynamodb_table(dynamodb):
+    dynamodb.create_table(
+        attribute_definitions=[
+            {
+                "AttributeName": "PK",
+                "AttributeType": "S"
+            },
+            {
+                "AttributeName": "SK",
+                "AttributeType": "S"
+            }
+        ],
+        key_schema=[
+            {
+                "AttributeName": "PK",
+                "KeyType": "HASH"
+            },
+            {
+                "AttributeName": "SK",
+                "KeyType": "RANGE"
+            }
+        ],
+    )
+    yield
+    dynamodb.delete_table()
+
+
+@pytest.fixture(scope="session")
+def dynamodb():
+    client = boto3.resource("dynamodb", endpoint_url="http://localhost:8000")
+    return DynamoDB(client=client)
