@@ -1,25 +1,17 @@
-from src.utils.dynamodb import DynamoDB
-
-
-def test_save_item():
-    dynamodb = DynamoDB()
+def test_save_item(dynamodb):
     item = {
-        "id": "123",
+        "PK": "123",
+        "SK": "track",
         "name": "test",
         "artists": "test",
         "album": "test",
-        "image": "test",
-        "preview": "test",
-        "external_url": "test",
-        "popularity": 1,
     }
     response = dynamodb.save_item(item)
     assert response["ResponseMetadata"]["HTTPStatusCode"] == 200
 
 
-def test_get_item():
-    dynamodb = DynamoDB()
-    item = {"id": "123"}
-    response = dynamodb.get_item(item)
+def test_get_item(dynamodb):
+    pk = "123"
+    response = dynamodb.get_item({"PK": pk, "SK": "track"})
     assert response["ResponseMetadata"]["HTTPStatusCode"] == 200
-    assert response["Item"]["id"] == "123"
+    assert response["Item"]["PK"] == pk

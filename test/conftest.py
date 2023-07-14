@@ -7,8 +7,8 @@ import dotenv
 dotenv.load_dotenv(".env.test")
 DIR_PATH = os.path.dirname(__file__)
 
-from src.utils.opensearch import OpenSearch, TRACKS_INDEX
-from src.utils.dynamodb import DynamoDB
+from opensearch import OpenSearch, TRACKS_INDEX
+from dynamodb import DynamoDB
 
 @pytest.fixture(scope="session", autouse=True)
 def setup_tracks_index():
