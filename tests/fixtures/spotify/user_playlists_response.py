@@ -1,0 +1,82 @@
+response = {
+   "href":"https://api.spotify.com/v1/users/viktorbubanja/playlists?offset=0&limit=50",
+   "items":[
+      {
+         "collaborative": False,
+         "description":"",
+         "external_urls":{
+            "spotify":"https://open.spotify.com/playlist/7y1BrGaP2GuK1EyMEvzzuQ"
+         },
+         "href":"https://api.spotify.com/v1/playlists/7y1BrGaP2GuK1EyMEvzzuQ",
+         "id":"7y1BrGaP2GuK1EyMEvzzuQ",
+         "images":[
+            {
+               "height":640,
+               "url":"https://i.scdn.co/image/ab67616d0000b273fc3f8866faf5d09164a0e555",
+               "width":640
+            }
+         ],
+         "name":"slappers",
+         "owner":{
+            "display_name":"Viktor Bubanja",
+            "external_urls":{
+               "spotify":"https://open.spotify.com/user/viktorbubanja"
+            },
+            "href":"https://api.spotify.com/v1/users/viktorbubanja",
+            "id":"viktorbubanja",
+            "type":"user",
+            "uri":"spotify:user:viktorbubanja"
+         },
+         "primary_color":"None",
+         "public": True,
+         "snapshot_id":"NCw2YzA2NGE4MDFiYjNmMGI0ZTFiMGIyODQxNGE0MDc0ODhlMDQ4NGQ5",
+         "tracks":{
+            "href":"https://api.spotify.com/v1/playlists/7y1BrGaP2GuK1EyMEvzzuQ/tracks",
+            "total":2
+         },
+         "type":"playlist",
+         "uri":"spotify:playlist:7y1BrGaP2GuK1EyMEvzzuQ"
+      },
+      {
+         "collaborative": False,
+         "description":"",
+         "external_urls":{
+            "spotify":"https://open.spotify.com/playlist/2gJeH2CmAIMnPG06ebrCx5"
+         },
+         "href":"https://api.spotify.com/v1/playlists/2gJeH2CmAIMnPG06ebrCx5",
+         "id":"2gJeH2CmAIMnPG06ebrCx5",
+         "images":[
+            {
+               "height":640,
+               "url":"https://i.scdn.co/image/ab67616d0000b27376426e7040d397700d3c123c",
+               "width":640
+            }
+         ],
+         "name":"bangersbangersbangers",
+         "owner":{
+            "display_name":"Viktor Bubanja",
+            "external_urls":{
+               "spotify":"https://open.spotify.com/user/viktorbubanja"
+            },
+            "href":"https://api.spotify.com/v1/users/viktorbubanja",
+            "id":"viktorbubanja",
+            "type":"user",
+            "uri":"spotify:user:viktorbubanja"
+         },
+         "primary_color":"None",
+         "public": True,
+         "snapshot_id":"NSwzNmNkNDNmZjNiMzBiZDFjNjcyNjBmOWEyOWRhNmI2YmZjM2Q2ZWU1",
+         "tracks":{
+            "href":"https://api.spotify.com/v1/playlists/2gJeH2CmAIMnPG06ebrCx5/tracks",
+            "total":3
+         },
+         "type":"playlist",
+         "uri":"spotify:playlist:2gJeH2CmAIMnPG06ebrCx5"
+      },
+   ],
+   "limit":50,
+   "next":"https://api.spotify.com/v1/users/viktorbubanja/playlists?offset=50&limit=50",
+   "offset":0,
+   "previous":"None",
+   "total":92
+}
