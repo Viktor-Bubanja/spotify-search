@@ -17,6 +17,11 @@ class DynamoDB:
     def save_item(self, item: dict) -> dict:
         return self.table.put_item(Item=item)
 
+    def save_items(self, items: list[dict]) -> dict:
+        with self.table.batch_writer() as batch:
+            for item in items:
+                batch.put_item(Item=item)
+
     def get_item(self, item: dict) -> dict:
         return self.table.get_item(Key=item)
 
