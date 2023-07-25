@@ -5,3 +5,4 @@ ndg-httpsclient
 pyopenssl
 pyasn1
 pytest-mock
+pytest-env

@@ -1,32 +1,28 @@
 import os
 from functools import cache
-from src.utils.environment_variables import dev_env, get_username_password
+from src.utils.environment_variables import *
 
-from opensearchpy import OpenSearch
+from opensearchpy import OpenSearch as OpenSearchPy
 
 TRACKS_INDEX = "tracks"
 
 
 @cache
 def _opensearch_client():
-    host = os.environ.get("OPENSEARCH_HOST")
+    host, port = get_opensearch_host(), 443
     username, password = get_username_password()
-    if not dev_env():
-        port = 443
-        verify_certs = True
-    else:
-        port = os.environ.get("OPENSEARCH_PORT")
-        verify_certs = False
 
-    return OpenSearch(
+    return OpenSearchPy(
         hosts=[{"host": host, "port": port}],
         http_auth=(username, password),
         use_ssl=True,
-        verify_certs=verify_certs,
+        verify_certs=True,
     )
 
 class OpenSearch:
-    def __init__(self, client=_opensearch_client()):
+    def __init__(self, client = None):
+        if client is None:
+            client = _opensearch_client()
         self.client = client
 
     def search(self, index: str, query: dict) -> dict:

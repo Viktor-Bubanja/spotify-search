@@ -10,7 +10,9 @@ def _dynamodb_client():
 
 # This class implements a Single-Table design so does not allow for the table variable to be changed
 class DynamoDB:
-    def __init__(self, client=_dynamodb_client()):
+    def __init__(self, client = None):
+        if client is None:
+            client = _dynamodb_client()
         self.client = client
         self.table = self.client.Table(SPOTIFY_SEARCH_TABLE)
 
