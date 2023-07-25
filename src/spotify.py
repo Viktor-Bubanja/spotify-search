@@ -12,7 +12,7 @@ scope = "playlist-read-private"
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
 
 
-def get_spotify_playlists() -> list[Playlist]:
+def get_playlists() -> list[Playlist]:
     response = sp.user_playlists("viktorbubanja")
     playlists = []
     for item in response["items"]:

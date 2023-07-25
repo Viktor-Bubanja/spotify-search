@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from src.spotify import get_spotify_playlists
+from src.spotify import get_playlists as get_spotify_playlists
 
 app = FastAPI()
 
